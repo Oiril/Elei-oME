@@ -1,0 +1,41 @@
+import random
+
+class Candidato:
+			def __init__(self, nome):
+				self.nome = nome
+				self.votos = 0
+
+candidatos = [
+		Candidato("Miranda Lawson"),
+		Candidato("Liara T'Soni"),
+		Candidato("Tali Zorah")
+]
+
+def exibir_opcoes():
+		print("Escolha um dos candidato digitando o numero correspondente:")
+		for i, candidato in enumerate(candidatos, start=1):
+				print(f"{i}. {candidato.nome}")
+
+def realizar_votacao():
+		while True:
+				exibir_opcoes()
+				try:
+						voto = int(input("Digite o numero do candidato (ou O para encerrar): "))
+						if 0 <= voto < len(candidatos): # Ajuste nesta linha
+								if voto == 0:
+										break
+								candidatos [voto - 1].votos += 1
+								print (f"Voce votou em {candidatos[voto - 1].nome}.")
+
+def exibir_resultados():
+	print("\nResultados da eleicao:")
+	for candidato in candidatos:
+			print(f"{candidato.nome}: {candidato.votos} votos")
+
+	vencedor = max(candidatos, key=lambda x: x.votos)
+	print(f"\nO vencedor é {vencedor.nome} com {vencedor.votos} votos!")
+
+if __name__ == "_main_":
+	print("Bem-vindo a eleicao presidencial de Angola!")
+	realizar_votacao()
+	exibir_resultados()
